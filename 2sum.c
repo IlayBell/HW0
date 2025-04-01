@@ -1,4 +1,5 @@
 #include <stdio.h>
+#include <stdlib.h>
 
 #define MAX_ARRAY_SIZE 10000
 
@@ -6,6 +7,8 @@ void twoSum(int nums[], int nums_size, int target);
 int partition(int arr[], int n);
 void quick_sort(int arr[], int n);
 void swap(int* a, int* b);
+int* arr_copy(int arr[], int n);
+int find(int arr[], int n, int target);
 
 
 int main() {
@@ -27,15 +30,20 @@ int main() {
 
 void twoSum(int nums[], int nums_size, int target) {
 	/* YOUR CODE HERE */
-    quick_sort(nums, nums_size);
+    int* nums_copy = arr_copy(nums, nums_size);
+    quick_sort(nums_copy, nums_size);
 
     int left = 0;
     int right = nums_size - 1;
 
     while (left <= right) {
-        int sum = nums[left] + nums[right];
+        int sum = nums_copy[left] + nums_copy[right];
         if (sum  == target) {
-            printf("(%d, %d)", left, right);
+            int left_old_idx = find(nums, nums_size, nums_copy[left]);
+            int right_old_idx = find(nums, nums_size, nums_copy[right]);
+            printf("(%d, %d)", left_old_idx, right_old_idx);
+
+            free(nums_copy);
             return;
         }
 
@@ -46,7 +54,11 @@ void twoSum(int nums[], int nums_size, int target) {
         }
     }
 
+    free(nums_copy);
+
 }
+
+
 
 void quick_sort(int arr[], int n) {
     if (n <= 1) {
@@ -91,4 +103,23 @@ void swap(int* a, int* b) {
     int c = *a;
     *a = *b;
     *b = c;
+}
+
+int* arr_copy(int arr[], int n) {
+    int* copied = (int*) malloc(n*sizeof(int));
+
+    for (int i = 0; i < n; i++) {
+        copied[i] = arr[i];
+    }
+    return copied;
+}
+
+int find(int arr[], int n, int target){
+    for(int i = 0; i < n; i++) {
+        if (arr[i] == target){
+            return i;
+        }
+    }
+
+    return -1;
 }
