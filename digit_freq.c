@@ -4,22 +4,23 @@
 #include <math.h>
 #include <stdlib.h>
 
-
-
 enum {
+    MAX_LENGTH = 1000,
     NUM_OF_DIGITS = 10
 };
 
 int main() {
     /* Enter your code here. Read input from STDIN. Print output to STDOUT */
     int hist[NUM_OF_DIGITS] = { 0 };
-    char s;
+    char s[MAX_LENGTH];
 
-    while (scanf("%c", &s) != EOF) {
+    scanf("%s", s);
+
+    for (int i = 0; i < MAX_LENGTH; i++) {
 
         // If s is a digit
-        if ('1' <= s && s <= '9') {
-            hist[s - '1']++;
+        if ('1' <= s[i] && s[i] <= '9') {
+            hist[s[i] - '1']++;
         }
     }
 
