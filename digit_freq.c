@@ -19,8 +19,8 @@ int main() {
     for (int i = 0; i < MAX_LENGTH; i++) {
 
         // If s is a digit
-        if ('1' <= s[i] && s[i] <= '9') {
-            hist[s[i] - '1']++;
+        if ('0' <= s[i] && s[i] <= '9') {
+            hist[s[i] - '0']++;
         }
     }
 
