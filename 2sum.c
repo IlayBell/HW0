@@ -8,7 +8,8 @@ int partition(int arr[], int n);
 void quick_sort(int arr[], int n);
 void swap(int* a, int* b);
 int* arr_copy(int arr[], int n);
-int find(int arr[], int n, int target);
+int find_l(int arr[], int n, int target);
+int find_r(int arr[], int n, int target);
 
 
 int main() {
@@ -39,9 +40,9 @@ void twoSum(int nums[], int nums_size, int target) {
     while (left <= right) {
         int sum = nums_copy[left] + nums_copy[right];
         if (sum  == target) {
-            int left_old_idx = find(nums, nums_size, nums_copy[left]);
-            int right_old_idx = find(nums, nums_size, nums_copy[right]);
-            printf("(%d, %d)", left_old_idx, right_old_idx);
+            int left_old = find_l(nums, nums_size, nums_copy[left]);
+            int right_old = find_r(nums, nums_size, nums_copy[right]);
+            printf("(%d, %d)", left_old, right_old);
 
             free(nums_copy);
             return;
@@ -55,9 +56,7 @@ void twoSum(int nums[], int nums_size, int target) {
     }
 
     free(nums_copy);
-
 }
-
 
 
 void quick_sort(int arr[], int n) {
@@ -114,8 +113,18 @@ int* arr_copy(int arr[], int n) {
     return copied;
 }
 
-int find(int arr[], int n, int target){
+int find_l(int arr[], int n, int target){
     for(int i = 0; i < n; i++) {
+        if (arr[i] == target){
+            return i;
+        }
+    }
+
+    return -1;
+}
+
+int find_r(int arr[], int n, int target){
+    for(int i = n-1; i >= 0; i--) {
         if (arr[i] == target){
             return i;
         }
