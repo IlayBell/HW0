@@ -28,6 +28,7 @@ int main() {
 void twoSum(int nums[], int nums_size, int target) {
 	/* YOUR CODE HERE */
     quick_sort(nums, nums_size);
+
     int left = 0;
     int right = nums_size - 1;
 
@@ -48,13 +49,13 @@ void twoSum(int nums[], int nums_size, int target) {
 }
 
 void quick_sort(int arr[], int n) {
-    if (n == 1) {
+    if (n <= 1) {
         return;
     }
 
     int pivot_idx = partition(arr, n);
     quick_sort(arr, pivot_idx);
-    quick_sort(arr + pivot_idx + 1, n - pivot_idx);
+    quick_sort(arr + pivot_idx + 1, n - pivot_idx - 1);
 }
 
 int partition(int arr[], int n) {
@@ -76,12 +77,14 @@ int partition(int arr[], int n) {
 
         else {
             swap(arr + left, arr + right);
+            left++;
+            right--;
         }
     }
 
-    swap(arr, arr + left);
+    swap(arr, arr + right);
 
-    return left;
+    return right;
 }
 
 void swap(int* a, int* b) {
