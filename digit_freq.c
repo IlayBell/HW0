@@ -12,11 +12,11 @@ enum {
 int main() {
     /* Enter your code here. Read input from STDIN. Print output to STDOUT */
     int hist[NUM_OF_DIGITS] = { 0 };
-    char s[MAX_LENGTH];
+    char s[MAX_LENGTH] = { 0 };
 
     scanf("%s", s);
 
-    for (int i = 0; i < MAX_LENGTH; i++) {
+    for (int i = 0; i < strlen(s); i++) {
 
         /* If s is a digit */
         if ('0' <= s[i] && s[i] <= '9') {
@@ -24,7 +24,7 @@ int main() {
         }
     }
 
-    for (int i = 0; i < NUM_OF_DIGITS ; i++) {
+    for (int i = 0; i < NUM_OF_DIGITS - 1; i++) {
         printf("%d ", hist[i]);
     }
 
