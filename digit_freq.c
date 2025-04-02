@@ -18,7 +18,7 @@ int main() {
 
     for (int i = 0; i < MAX_LENGTH; i++) {
 
-        // If s is a digit
+        /* If s is a digit */
         if ('0' <= s[i] && s[i] <= '9') {
             hist[s[i] - '0']++;
         }
@@ -28,7 +28,7 @@ int main() {
         printf("%d ", hist[i]);
     }
 
-    // Print last index without space at the end
+    /* Print last index without space at the end */
     printf("%d", hist[NUM_OF_DIGITS - 1]);
 
     return 0;
