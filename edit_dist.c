@@ -33,12 +33,12 @@ int edit_dist(char word1[], char word2[]) {
     int len1 = strlen(word1);
     int len2 = strlen(word2);
 
-    for (int i = 0; i < len1; i++) {
-        table[0][i] = i;
+    for (int i = 0; i <= len1; i++) {
+        table[i][0] = i;
     }
 
-    for (int j = 0; j < len2; j++) {
-        table[j][0] = j;
+    for (int j = 0; j <= len2; j++) {
+        table[0][j] = j;
     }
 
     /* table[i-1][j] -> resembles the deletion operation
@@ -48,16 +48,16 @@ int edit_dist(char word1[], char word2[]) {
     for (int i = 1; i < len1 + 1; i++) {
         for (int j = 1; j < len2 + 1; j++) {
             if (word1[i - 1] == word2[j - 1]) {
-                table[j][i] = table[j - 1][i - 1];
+                table[i][j] = table[i - 1][j - 1];
             } else {
-                table[j][i] = min3(table[j - 1][i],
-                                   table[j][i - 1],
-                                   table[j - 1][i - 1]) + 1;
+                table[i][j] = min3(table[i - 1][j],
+                                   table[i][j - 1],
+                                   table[i - 1][j - 1]) + 1;
             }
         }
     }
 
-    return table[len2][len1];
+    return table[len1][len2];
 }
 
 /**
