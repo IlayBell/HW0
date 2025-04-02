@@ -24,7 +24,7 @@ int main() {
         }
     }
 
-    for (int i = 0; i < NUM_OF_DIGITS - 1; i++) {
+    for (int i = 0; i < NUM_OF_DIGITS ; i++) {
         printf("%d ", hist[i]);
     }
 
